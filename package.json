@@ -1,0 +1,27 @@
+{
+  "name": "final-message-board",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "npm run start:backend & npm run start:frontend",
+    "start:frontend": "npm run start --workspace=frontend",
+    "start:backend": "npm run start --workspace=backend",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryxnseamxn/final-message-board.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryxnseamxn/final-message-board/issues"
+  },
+  "homepage": "https://github.com/ryxnseamxn/final-message-board#readme",
+  "description": ""
+}

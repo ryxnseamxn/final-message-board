@@ -12,6 +12,21 @@
 // a query as well as the arguments for the query? I want it to export an
 // instance of the pool in order to follow a singleton design pattern
 
+
+// prompt 3
+
+// async query(text, params = []) {
+//   const client = await this.pool.connect();
+//   try {
+//     const result = await client.query(text, params);
+//     return result;
+//   } finally {
+//     client.release();
+//   }
+// }
+
+// Can you modify this so that I can still pass the query and parameters into the function but the query be parameterized
+
 const { Pool } = require('pg');
 
 class DatabasePool {
@@ -22,7 +37,7 @@ class DatabasePool {
 
     // Create the connection pool
     this.pool = new Pool({
-      connectionString: 'postgresql://neondb_owner:npg_AaTpE2VDZB9n@ep-tiny-art-a8cmwf3r-pooler.eastus2.azure.neon.tech/neondb?sslmode=require',
+      connectionString: `postgresql://neondb_owner:${process.env.DB_PASSWORD}@ep-tiny-art-a8cmwf3r-pooler.eastus2.azure.neon.tech/neondb?sslmode=require`,
       max: 20, // Maximum number of clients in the pool
       idleTimeoutMillis: 30000, // How long a client is allowed to remain idle before being closed
       connectionTimeoutMillis: 2000, // How long to wait for a connection
@@ -45,7 +60,12 @@ class DatabasePool {
   async query(text, params = []) {
     const client = await this.pool.connect();
     try {
-      const result = await client.query(text, params);
+      // Make sure the query text is properly parameterized
+      // by ensuring all values are passed as parameters
+      const result = await client.query({
+        text: text,
+        values: params
+      });
       return result;
     } finally {
       client.release();

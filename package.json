@@ -6,9 +6,9 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "npm run start:backend & npm run start:frontend",
-    "start:frontend": "npm run start --workspace=frontend",
-    "start:backend": "npm run start --workspace=backend",
+    "start": "npm run start:server & npm run start:client",
+    "start:client": "npm run start --workspace=client",
+    "start:server": "npm run start --workspace=server",
     "build": "npm run build --workspaces",
     "test": "npm run test --workspaces"
   },
@@ -23,5 +23,13 @@
     "url": "https://github.com/ryxnseamxn/final-message-board/issues"
   },
   "homepage": "https://github.com/ryxnseamxn/final-message-board#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-async-handler": "^1.2.0",
+    "firebase-functions": "^6.3.2",
+    "obscenity": "^0.4.3",
+    "pg": "^8.13.3"
+  }
 }

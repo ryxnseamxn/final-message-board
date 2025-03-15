@@ -9,7 +9,7 @@ const Home = () => {
 
     const fetchMessages = async () => {
         try {
-            const response = await fetch(`${config.API_URL}/api/messages`, {
+            const response = await fetch(`${config.API_URL}/messages`, {
                 //headers
             });    
 

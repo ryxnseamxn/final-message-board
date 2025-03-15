@@ -20,7 +20,7 @@ const AddMessage = ({ onMessageAdded }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${config.API_URL}/api/new`, {
+            const response = await fetch(`${config.API_URL}/new`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

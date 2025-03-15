@@ -10,7 +10,7 @@ const MessagePage = () => {
     useEffect(() => {
         const fetchMessage = async () => {
             try {
-                const response = await fetch(`${config.API_URL}/api/message/${id}`, {
+                const response = await fetch(`${config.API_URL}/message/${id}`, {
                     //headers
                 });
                 const data = await response.json();

@@ -1,27 +1,25 @@
-require('dotenv').config();
 const express = require("express");
 const cors = require('cors');
 const messageRouter = require("./routes/messageRouter");
 const censor = require("./middleware/censor"); 
-const functions = require('firebase-functions');
-const app = express(); 
 
-const allowedOrigins = [
-    'https://react-message-app-31d4f.firebaseapp.com', 
-    'https://react-message-app-31d4f.web.app', 
-    'http://localhost:3000'
-]
+const app = express();
+const PORT = process.env.PORT || 3001;
 
 app.use(cors({
-    origin: allowedOrigins,
-    credentials: true
+  origin: [
+    'https://message-board-6c23d.web.app',
+    'https://message-board-6c23d.firebaseapp.com',
+    'http://localhost:3000'
+  ],
+  credentials: true
 }));
 
-
 app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
+app.use(censor);
+app.use(messageRouter);
 
-app.use(censor); 
-app.use(messageRouter); 
-
-exports.api = functions.https.onRequest(app); 
+// Health check endpoint
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+});

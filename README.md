@@ -1,4 +1,4 @@
-# react-message-board
+# final-message-board
 
 This is my implementation of The Odin Project's message board app (with React) hosted [here](https://message-board-6c23d.web.app/)
 
